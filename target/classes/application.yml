@@ -1,0 +1,50 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/im?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+      username: root
+      password: root
+
+  redis:
+    host: 192.168.88.128
+    enable: true
+    port: 6379
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+    check-template-location: true
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.myim.domain
+
+websocket:
+  connector:
+    server:
+      readIdleSecond: 0
+      writeIdleSecond: 0
+      allIdleSecond: 360
+      sendBuff: -1
+      recvBuff: -1
+      backlog: 500000
+      bossThreads: 1
+      connTimeoutMills: 10000
+      soLinger: 0
+      port: 8080
+      reuseAddr: true
+      useDirectBuffer: true
+      useEpoll: true
+      useMemPool: true
+      userThreads: 50
+      workerThreads: 0
+      idleTimes: 5

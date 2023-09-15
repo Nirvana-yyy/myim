@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.myim.mapper.ImUserMapper">
+    <resultMap id="BaseResultMap" type="com.example.myim.domain.ImUser">
+            <id property="uid" column="uid" jdbcType="INTEGER"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+
+
+    </resultMap>
+    <select id="findUserByUsernameAndPassword" parameterType="string" resultType="com.example.myim.domain.ImUser">
+        select * from im_user where email = #{username} and password = #{password}
+    </select>
+
+    <select id="findUserByUsername" parameterType="string" resultMap="BaseResultMap">
+        select * from im_user where email = #{usernameBy}
+    </select>
+    <select id="findUsersByUidIsNot" parameterType="long" resultMap="BaseResultMap">
+        select * from im_user where uid != #{uid}
+    </select>
+    <select id="findUserByOtherUid" parameterType="long" resultMap="BaseResultMap">
+        select * from im_user where uid = #{otherUid}
+    </select>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.myim.mapper.MsgContentMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.myim.domain.ImMsgContent">
+            <id property="mid" column="mid" jdbcType="INTEGER"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="senderId" column="sender_id" jdbcType="INTEGER"/>
+            <result property="recipientId" column="recipient_id" jdbcType="INTEGER"/>
+            <result property="msgType" column="msg_type" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="save" parameterType="imMsgContent">
+        insert into im_msg_content values(null,#{content},#{senderId},#{recipientId},#{msgType},#{createTime})
+    </insert>
+    <select id="findByMid" resultMap="BaseResultMap" parameterType="long">
+        select * from im_msg_content where mid = #{mid}
+    </select>
+    <select id="findMidByCurrentTime" parameterType="date" resultType="java.lang.Integer">
+        select mid from im_msg_content where create_time = #{currentTime}
+    </select>
+
+
+
+</mapper>
